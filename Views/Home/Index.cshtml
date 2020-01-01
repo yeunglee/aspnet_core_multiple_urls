@@ -1,0 +1,26 @@
+﻿@using System.Text
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <div>
+        @Html.ActionLink("Set cookie", "SetCookie", "Home")
+        <div>
+            Cookie value:
+            <span>@Context.Request.Cookies["test"]</span>
+        </div>
+    </div>
+
+    <div>
+        @Html.ActionLink("Set session", "SetSession", "Home")
+        <div>
+            Session value:
+
+            @if (Context.Session.TryGetValue("test", out byte[] data))
+            {
+                <span>@Encoding.UTF8.GetString(data)</span>
+            }
+        </div>
+    </div>
+</div>
